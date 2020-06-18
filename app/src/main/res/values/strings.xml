@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Authentication</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="registration">Registration</string>
+    <string name="toast1">Fill in the login and password fields</string>
+    <string name="toast2">Login complete</string>
+    <string name="toast3">Registration completed</string>
+</resources>
