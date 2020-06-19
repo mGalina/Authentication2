@@ -16,7 +16,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.text.BreakIterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,17 +45,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
                 } else {
                     String filename = "login.txt";
-                    // Получим входные байты из файла которых нужно прочесть.
                     FileInputStream fileInputStream = null;
                     try {
                         fileInputStream = openFileInput(filename);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    // Декодируем байты в символы
                     assert fileInputStream != null;
                     InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-                    // Читаем данные из потока ввода, буферизуя символы так, чтобы обеспечить эффективную запись отдельных символов.
                     BufferedReader reader = new BufferedReader(inputStreamReader);
                     try {
                         reader.readLine();
@@ -77,25 +73,20 @@ public class MainActivity extends AppCompatActivity {
                 if (!userName.getText().toString().isEmpty() || !userPassword.getText().toString().isEmpty()) {
                     Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
                 } else {
-                    // Создадим файл и откроем поток для записи данных
                     FileOutputStream fileOutputStream = null;
                     try {
                         fileOutputStream = openFileOutput("file_login", MODE_PRIVATE);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    // Обеспечим переход символьных потока данных к байтовым потокам.
                     assert fileOutputStream != null;
                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-                    // Запишем текст в поток вывода данных, буферизуя символы так, чтобы обеспечить эффективную запись отдельных символов.
                     BufferedWriter bw = new BufferedWriter(outputStreamWriter);
-                    // запись данных
                     try {
                         bw.write("Содержимое файла");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    // закрытие потока
                     try {
                         bw.close();
                     } catch (IOException e) {
