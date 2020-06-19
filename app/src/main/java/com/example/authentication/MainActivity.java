@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.text.BreakIterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,8 +28,12 @@ public class MainActivity extends AppCompatActivity {
         EditText userName = findViewById(R.id.edit_login);
         EditText userPassword = findViewById(R.id.edit_password);
 
-        saveUser();
-        registrationUser();
+        if (!userName.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()) {
+            Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
+        } else {
+            saveUser();
+            registrationUser();
+        }
     }
 
     private void saveUser() {
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Создадим файл и откроем поток для записи данных
                 FileOutputStream fileOutputStream = null;
                 try {
