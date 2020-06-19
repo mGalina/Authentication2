@@ -6,4 +6,6 @@
     <string name="toast1">Fill in the login and password fields</string>
     <string name="toast2">Login complete</string>
     <string name="toast3">Registration completed</string>
+    <string name="toast4">Wrong password or login</string>
+    <string name="toast5">User not found</string>
 </resources>
