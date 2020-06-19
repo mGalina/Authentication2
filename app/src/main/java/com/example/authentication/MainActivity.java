@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userName;
     private EditText userPassword;
-    // Я вынес это в константу, чтобы не ошибиться вводя два раза одно и то же (при чтении и при записи)
     private static final String FILENAME = "login.txt";
 
     @Override
@@ -46,16 +45,13 @@ public class MainActivity extends AppCompatActivity {
                 String passwordText = userPassword.getText().toString();
                 if (userNameText.isEmpty() || passwordText.isEmpty()) {
                     Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
-                    // Не люблю вложенность. Проще здесь вернуться из onClick)
                     return;
                 }
 
-                // Посмотрите ссылку, которую я дал. Внутри скобочек перечисляем всё, что надо закрыть методом close. Оно закроется само
                 try (FileInputStream fileInputStream = openFileInput(FILENAME);
                      InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
                      BufferedReader reader = new BufferedReader(inputStreamReader)) {
 
-                    // Читаем 2 строки из файла. Главное не перепутать порядок)
                     String login = reader.readLine();
                     String password = reader.readLine();
 
@@ -86,17 +82,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Эти все обёртки можно не учить. Можно загуглить. Я сам их не все помню)
-                // Тут если указать не MODE_PRIVATE, а MODE_APPEND, то можно писать в конец файла.
-                // В данном случае файл перезаписывается
                 try (FileOutputStream fileOutputStream = openFileOutput(FILENAME, MODE_PRIVATE);
                      OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
                      BufferedWriter bw = new BufferedWriter(outputStreamWriter)) {
-                    // Пишем сначала строку с именем юзера
                     bw.write(userNameText);
-                    // Это перенос строки, чтобы потом построчно прочитать
                     bw.write("\n");
-                    // Пароль)
                     bw.write(passwordText);
 
                     Toast.makeText(MainActivity.this, R.string.toast3, Toast.LENGTH_LONG).show();
