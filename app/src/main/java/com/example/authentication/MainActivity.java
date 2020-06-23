@@ -55,7 +55,11 @@ public class MainActivity extends AppCompatActivity {
         externalStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                savePrefsData();
+                SharedPreferences.Editor myEditor = myLogeSharedPref.edit();
+                boolean check = Boolean.parseBoolean(externalStorage.getText().toString());
+                final SharedPreferences.Editor editor = myEditor.putString();
+                myEditor.apply();
+                Toast.makeText(MainActivity.this, R.string.toast6, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -119,13 +123,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void savePrefsData() {
-        SharedPreferences myLogeSharedPref = getApplicationContext().getSharedPreferences("myLogin", MODE_PRIVATE);
-        SharedPreferences.Editor editor = myLogeSharedPref.edit();
-        editor.putBoolean("meLogin", true);
-        editor.apply();
-        Toast.makeText(MainActivity.this, R.string.toast6, Toast.LENGTH_LONG).show();
     }
 }
