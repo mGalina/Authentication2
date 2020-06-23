@@ -1,8 +1,11 @@
 package com.example.authentication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userName;
     private EditText userPassword;
+    private CheckBox externalStorage;
+    private SharedPreferences myLogeSharedPref;
     private static final String FILENAME = "login.txt";
 
     @Override
@@ -29,11 +34,30 @@ public class MainActivity extends AppCompatActivity {
 
         userName = findViewById(R.id.edit_login);
         userPassword = findViewById(R.id.edit_password);
+        externalStorage = findViewById(R.id.checkBox_external_storage);
+
+        myLogeSharedPref = getSharedPreferences("myLoge", MODE_PRIVATE);
 
         Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
 
+        resetCheckBoxes();
+        saveCheckBox();
         saveUser();
         registrationUser();
+
+    }
+
+    private void resetCheckBoxes() {
+        externalStorage.setChecked(false);
+    }
+
+    private void saveCheckBox() {
+        externalStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                savePrefsData();
+            }
+        });
     }
 
     private void saveUser() {
@@ -95,5 +119,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void savePrefsData() {
+        SharedPreferences myLogeSharedPref = getApplicationContext().getSharedPreferences("myLogin", MODE_PRIVATE);
+        SharedPreferences.Editor editor = myLogeSharedPref.edit();
+        editor.putBoolean("meLogin", true);
+        editor.apply();
+        Toast.makeText(MainActivity.this, R.string.toast6, Toast.LENGTH_LONG).show();
     }
 }

@@ -8,4 +8,6 @@
     <string name="toast3">Registration completed</string>
     <string name="toast4">Wrong password or login</string>
     <string name="toast5">User not found</string>
+    <string name="external_storage">Хранить логин во внешнем хранилище</string>
+    <string name="toast6">Данные сохранены во внешнее  хранилище</string>
 </resources>
