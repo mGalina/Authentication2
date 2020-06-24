@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void savePrefsData() {
         SharedPreferences.Editor edit = pref.edit();
-        edit.putBoolean(save_key,externalStorage.get);
-
+        edit.putBoolean(save_key, Boolean.parseBoolean(externalStorage.getText().toString()));
+        edit.apply();
     }
 
     private void saveUser() {
