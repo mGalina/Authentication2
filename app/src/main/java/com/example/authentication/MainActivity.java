@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText userPassword;
     private CheckBox externalStorage;
     private SharedPreferences pref;
+    private static final String save_key = "save_key";
     private static final String FILENAME = "login.txt";
 
     @Override
@@ -34,13 +35,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
+
+        init();
+        saveUser();
+    }
+
+    private void init() {
         userName = findViewById(R.id.edit_login);
         userPassword = findViewById(R.id.edit_password);
         externalStorage = findViewById(R.id.checkBox_external_storage);
 
         pref = getSharedPreferences("myLogin", MODE_PRIVATE);
-
-        Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
     }
 
     public void onClickCheck(View view) {
@@ -58,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void savePrefsData() {
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putBoolean(save_key,externalStorage.get);
 
     }
-
 
     private void saveUser() {
         Button login = findViewById(R.id.btn_login);
