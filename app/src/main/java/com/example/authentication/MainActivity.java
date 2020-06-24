@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText userName;
     private EditText userPassword;
     private CheckBox externalStorage;
-    private SharedPreferences myLogeSharedPref;
+    private SharedPreferences pref;
     private static final String FILENAME = "login.txt";
 
     @Override
@@ -38,17 +38,12 @@ public class MainActivity extends AppCompatActivity {
         userPassword = findViewById(R.id.edit_password);
         externalStorage = findViewById(R.id.checkBox_external_storage);
 
-        myLogeSharedPref = getSharedPreferences("myLoge", MODE_PRIVATE);
+        pref = getSharedPreferences("myLogin", MODE_PRIVATE);
 
         Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
-
-        clickCheckBox();
-        savePrefsData();
-        saveUser();
-        registrationUser();
     }
 
-    private void clickCheckBox() {
+    public void onClickCheck(View view) {
         externalStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -63,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void savePrefsData() {
-        
+
     }
 
 
