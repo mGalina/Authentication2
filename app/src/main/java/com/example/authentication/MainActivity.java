@@ -7,8 +7,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
@@ -40,29 +42,30 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
 
-        resetCheckBoxes();
-        saveCheckBox();
+        clickCheckBox();
+        savePrefsData();
         saveUser();
         registrationUser();
-
     }
 
-    private void resetCheckBoxes() {
-        externalStorage.setChecked(false);
-    }
-
-    private void saveCheckBox() {
+    private void clickCheckBox() {
         externalStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor myEditor = myLogeSharedPref.edit();
-                boolean check = Boolean.parseBoolean(externalStorage.getText().toString());
-                final SharedPreferences.Editor editor = myEditor.putString();
-                myEditor.apply();
-                Toast.makeText(MainActivity.this, R.string.toast6, Toast.LENGTH_LONG).show();
+                if (isChecked) {
+                    Toast.makeText(MainActivity.this, R.string.toast6, Toast.LENGTH_LONG).show();
+                    savePrefsData();
+                } else {
+                    registrationUser();
+                }
             }
         });
     }
+
+    private void savePrefsData() {
+        
+    }
+
 
     private void saveUser() {
         Button login = findViewById(R.id.btn_login);
