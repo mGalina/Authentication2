@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText userPassword;
     private CheckBox externalStorage;
     private SharedPreferences pref;
-    private static final String save_key = "save_key";
     private static final String FILENAME = "login.txt";
     private static final String EXTERNAL_KEY = "EXTERNAL_KEY";
 
@@ -99,34 +98,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void registrationUser() {
         Button registration = findViewById(R.id.btn_registration);
-        registration.setOnClickListener( new View.OnClickListener() {
+        registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String userNameText = userName.getText().toString();
                 String passwordText = userPassword.getText().toString();
 
-                if (externalStorage != null) {
+                if (userNameText.isEmpty() || passwordText.isEmpty()) {
+                    Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
+                    return;
+                }
 
+                try (FileOutputStream fileOutputStream = openFileOutput(FILENAME, MODE_PRIVATE);
+                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+                     BufferedWriter bw = new BufferedWriter(outputStreamWriter)) {
+                    bw.write(userNameText);
+                    bw.write("\n");
+                    bw.write(passwordText);
 
-                } else {
-
-                    if (userNameText.isEmpty() || passwordText.isEmpty()) {
-                        Toast.makeText(MainActivity.this, R.string.toast1, Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    try (FileOutputStream fileOutputStream = openFileOutput(FILENAME, MODE_PRIVATE);
-                         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-                         BufferedWriter bw = new BufferedWriter(outputStreamWriter)) {
-                        bw.write(userNameText);
-                        bw.write("\n");
-                        bw.write(passwordText);
-
-                        Toast.makeText(MainActivity.this, R.string.toast3, Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Toast.makeText(MainActivity.this, R.string.toast3, Toast.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
