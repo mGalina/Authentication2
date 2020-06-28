@@ -3,14 +3,11 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="registration">Registration</string>
-    <string name="toast1">Заполните поля логин и пароль</string>
-    <string name="toast2">Авторизация завершена</string>
-    <string name="toast3">Регистрация завершена</string>
-    <string name="toast4">Неверный пароль или логин</string>
-    <string name="toast5">Пользователь не найден</string>
-    <string name="external_storage">Хранить логин во внешнем хранилище</string>
-    <string name="toast6">Внешнее хранилище выбрано</string>
-    <string name="toast7">Данные будут храниться во внутреннем хранилище</string>
-    <string name="toast8">Данные сохранены во внешнее хранилище</string>
-    <string name="toast9">Нет разрешения на доступ к внешнему хранлищиу</string>
+    <string name="fill_in_the_fields">Заполните поля логин и пароль</string>
+    <string name="authorization_complete">Авторизация завершена</string>
+    <string name="registration_completed">Регистрация завершена</string>
+    <string name="wrong_data">Неверный пароль или логин</string>
+    <string name="no_user">Пользователь не найден</string>
+    <string name="external_storage">Внешнее хранилище выбрано</string>
+    <string name="internal_storage">Данные будут храниться во внутреннем хранилище</string>
 </resources>
