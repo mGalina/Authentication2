@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         externalStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                pref.edit().putBoolean(EXTERNAL_KEY, isChecked).apply();
                 if (externalStorage.isChecked()) {
-                    pref.edit().putBoolean(EXTERNAL_KEY, isChecked).apply();
                     Toast.makeText(MainActivity.this, R.string.external_storage, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(MainActivity.this, R.string.internal_storage, Toast.LENGTH_LONG).show();
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         String userNameText = userName.getText().toString();
         String passwordText = userPassword.getText().toString();
 
-        if (userNameText.isEmpty() || passwordText.isEmpty()) {
+        if (userNameText.isEmpty() && passwordText.isEmpty()) {
             Toast.makeText(MainActivity.this, R.string.fill_in_the_fields, Toast.LENGTH_LONG).show();
             return;
         }
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         String userNameText = userName.getText().toString();
         String passwordText = userPassword.getText().toString();
 
-        if (userNameText.isEmpty() || passwordText.isEmpty()) {
+        if (userNameText.isEmpty() && passwordText.isEmpty()) {
             Toast.makeText(MainActivity.this, R.string.fill_in_the_fields, Toast.LENGTH_LONG).show();
             return;
         }
